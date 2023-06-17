@@ -3,7 +3,7 @@ import { Column, Model, Table } from "sequelize-typescript";
 @Table
 export class ReviewModel extends Model {
 	@Column
-	_id: string;
+	productId: string;
 
 	@Column
 	title: string;
@@ -16,10 +16,4 @@ export class ReviewModel extends Model {
 
 	@Column
 	rating: number;
-
-	@Column
-	createdAt: Date;
-
-	@Column
-	updatedAt: Date;
 }
