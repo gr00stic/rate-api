@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Param, Patch, Delete } from '@nestjs/common';
-import { ReviewModel } from './review.model';
 import { ReviewService } from './review.service';
+import { CreateReviewDto } from './dto/create-review.dto';
 
 @Controller('review')
 export class ReviewController {
@@ -9,7 +9,7 @@ export class ReviewController {
 	) { }
 
 	@Post('create')
-	async create(@Body() dto: ReviewModel) {
+	async create(@Body() dto: CreateReviewDto) {
 		const created = await this.reviewService.create(dto);
 
 		return created;
@@ -23,7 +23,7 @@ export class ReviewController {
 	}
 
 	@Patch(':id')
-	async update(@Param('id') id: string, @Body() dto: ReviewModel) {
+	async update(@Param('id') id: string, @Body() dto: CreateReviewDto) {
 		const updated = await this.reviewService.update(id, dto);
 
 		return updated;

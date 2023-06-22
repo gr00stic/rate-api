@@ -5,7 +5,4 @@ export class CreateProductDto {
 	price: number;
 	prevPrice: number;
 	rating: number;
-	characteristics: {
-		[key: string]: string;
-	};
 }
