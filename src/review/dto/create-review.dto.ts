@@ -4,5 +4,5 @@ export class CreateReviewDto {
 	title: string
 	name: string
 	text: string
-	rating: string
+	rating: number
 }

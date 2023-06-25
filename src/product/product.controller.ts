@@ -2,11 +2,13 @@ import { Body, Controller, Delete, Get, Param, Post, Patch, HttpCode } from '@ne
 import { FindProductDto } from './dto/find-product.dto';
 import { ProductService } from './product.service';
 import { CreateProductDto } from './dto/create-product.dto';
+import { ReviewService } from 'src/review/review.service';
 
 @Controller('product')
 export class ProductController {
 	constructor(
-		private productService: ProductService
+		private productService: ProductService,
+		private reviewService: ReviewService
 	) { }
 
 	@Post('create')
@@ -22,10 +24,11 @@ export class ProductController {
 	@Get(':id')
 	async findByProductId(@Param('id') id: string) {
 		const found = await this.productService.findById(id);
+		const rating = (await this.reviewService.getProductRating(id))._avg;
 
 		if (!found) console.log(`product with id: ${id} was not found.`);
 
-		return found;
+		return { ...found, ...rating };
 	}
 
 	@Get()

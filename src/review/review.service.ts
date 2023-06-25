@@ -18,6 +18,16 @@ export class ReviewService {
 		})
 	}
 
+	async getProductRating(id: string) {
+		return this.prisma.review.aggregate({
+			where: {
+				productId: id,
+			}, _avg: {
+				rating: true
+			}
+		})
+	}
+
 	async update(id: string, dto: CreateReviewDto) {
 		return this.prisma.review.update({ where: { id }, data: { ...dto } });
 	}

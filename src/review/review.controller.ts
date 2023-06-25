@@ -43,6 +43,13 @@ export class ReviewController {
 		return found;
 	}
 
+	@Get('rating/:productId')
+	async getProductRating(@Param('productId') productId: string) {
+		const found = await this.reviewService.getProductRating(productId);
+
+		return found;
+	}
+
 	@Delete('byProduct/:productId')
 	async deleteByProductId(@Param('productId') productId: string) {
 		const found = await this.reviewService.deleteByProductId(productId);
